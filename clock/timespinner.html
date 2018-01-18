@@ -5,7 +5,7 @@ Author: Glenn G. Vergara
 Email: glenngv@yahoo.com
 Philippines
 
-Please keep this intact 
+Please keep this intact
 if you want to use it.
 Thanks.
 *************************/
@@ -35,24 +35,24 @@ Thanks.
    this.btnId = btnContainerId;
    this.interval = (typeof interval!='undefined' && interval!=null && interval>0) ? interval:1; //default is 1
    this.hasLeadingZero = (typeof hasLeadingZero!='undefined' && hasLeadingZero!=null) ? hasLeadingZero:false; //default is false
-   
+
    //attach event handlers automatically
    targetField.onfocus = function(){setTarget(targetField,me)};
    targetField.onblur = function(){if (isNaN(parseInt(this.value,10))) this.value=me.minValue;}
-   if (!btnUp.onmousedown) 
+   if (!btnUp.onmousedown)
      btnUp.onmousedown = function(){
    	   if (me.oneToOne) setTarget(me.targetField,me);
    	   startSpin(1,me.btnId);
      }
    if (!btnUp.onmouseup) btnUp.onmouseup = stopSpin;
-   if (!btnDn.onmousedown) 
+   if (!btnDn.onmousedown)
      btnDn.onmousedown = function(){
    	   if (me.oneToOne) setTarget(me.targetField,me);
    	   startSpin(0,me.btnId);
      }
    if (!btnDn.onmouseup) btnDn.onmouseup = stopSpin;
-   
- } 
+
+ }
 
  function setTime(mode,btnId){//mode:1=up, 0=down
     //stop spinning
@@ -68,31 +68,31 @@ Thanks.
     spinValue = (mode==0) ? spinValue-currentTarget.spinner.interval:spinValue+currentTarget.spinner.interval;
 
     //out of range?
-    if (spinValue>currentTarget.spinner.maxValue) spinValue=currentTarget.spinner.minValue; 
+    if (spinValue>currentTarget.spinner.maxValue) spinValue=currentTarget.spinner.minValue;
     else if (spinValue<currentTarget.spinner.minValue) spinValue=currentTarget.spinner.maxValue;
 
     //set leading zero
     if (currentTarget.spinner.hasLeadingZero && spinValue<10) spinValue="0"+spinValue;
 
     //set value to target field
-    currentTarget.field.value=spinValue;	
+    currentTarget.field.value=spinValue;
     currentTarget.field.select();
-    currentTarget.field.focus();			
+    currentTarget.field.focus();
 
     //continue spinning
     setTimeout(function(){setTime(mode,btnId)},200);
  }
- 
+
  function startSpin(mode, btnId){
    continueSpin = true;
    setTime(mode, btnId);
  }
- 
+
  function stopSpin(){
    	continueSpin = false;
    	if (currentTarget.field) currentTarget.field.focus();
  }
- 
+
  function setTarget(focusedObj, spinnerObj){
    currentTarget.field = focusedObj;
    currentTarget.spinner = spinnerObj;
@@ -106,13 +106,13 @@ Thanks.
  var spinnerHour;
  var spinnerMin;
  var spinnerDay;
- 
+
  function initSpinner(){
    var f = document.timerForm;
    spinnerHour = new NumberSpinner(f.hhFrom,f.btnUp1,f.btnDn1,0,23,false,'btnTime1',1,true);
    spinnerMin = new NumberSpinner(f.mmFrom,f.btnUp1,f.btnDn1,0,59,false,'btnTime1',1,true);
    spinnerDay = new NumberSpinner(f.days,f.btnUp2,f.btnDn2,0,50,true,'btnTime2',5,false);
-   
+
    //NOTE: if you have other document.onmousedown (or '<body onmousedown' in HTML) handler anywhere, you must combine them
    document.onmousedown=function(e){
      var targ = (e)?e.target:event.srcElement;

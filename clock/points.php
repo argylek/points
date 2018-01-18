@@ -21,9 +21,9 @@ Submit<input type="submit" name="submit">
 <?php
 
     $_GET["ctime"];
-    $ctime = 
-    
-    
+    $ctime =
+
+
 ?>
 
 
